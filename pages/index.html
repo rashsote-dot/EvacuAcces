@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EvacuAcces – Evacuación accesible</title><link rel="stylesheet" href="../css/styles.css"></head>
+<body>
+<header><strong>EvacuAcces</strong>
+<nav aria-label="Principal"><a href="#inicio">Inicio</a><a href="#problema">Problema</a><a href="#solucion">Solución</a><a href="#funcionalidades">Funcionalidades</a><a href="#equipo">Equipo</a></nav>
+<div class="tools" role="group" aria-label="Accesibilidad">
+<button id="fmas" aria-label="Aumentar texto">A+</button><button id="fmenos" aria-label="Reducir texto">A−</button>
+<button id="btnHc" aria-pressed="false" data-hu="05">Alto contraste</button><button id="btnCalm" aria-pressed="false" data-hu="05">Sin destellos</button></div></header>
+<main>
+<section id="inicio" class="hero"><h1>Evacuar en una emergencia, sin dejar a nadie atrás</h1>
+<p>EvacuAcces guía a personas con discapacidad visual, auditiva o motora hacia una zona segura y coordina a las brigadas en tiempo real.</p>
+<p><a class="btn pri" href="#funcionalidades" style="display:inline-block;text-decoration:none;background:var(--ink);color:#fff">Probar la demo</a></p></section>
+<section id="problema"><h2>El problema</h2><p>Las alertas y rutas de evacuación suelen asumir que todos oyen, ven y caminan igual. Las personas con discapacidad quedan sin información útil y las brigadas no saben dónde están.</p></section>
+<section id="solucion"><h2>La solución</h2><div class="grid">
+<article class="card"><h3>Personas con discapacidad sensorial</h3><p>Alertas por vibración, destello, voz y texto, y tarjetas para comunicarse sin hablar.</p></article>
+<article class="card"><h3>Movilidad reducida</h3><p>Ruta sin escaleras que se recalcula si un ascensor se bloquea, y botón de auxilio.</p></article>
+<article class="card"><h3>Brigadistas y administradores</h3><p>Panel con zonas de refugio, misiones de rescate y alertas por piso.</p></article></div></section>
+<section id="funcionalidades"><h2>Funcionalidades (demo simulada)</h2>
+<div class="tabs" role="tablist" aria-label="Perfiles">
+<button role="tab" id="t-user" aria-selected="true" aria-controls="p-user" class="sel">Usuario</button>
+<button role="tab" id="t-brig" aria-selected="false" aria-controls="p-brig">Brigadista</button>
+<button role="tab" id="t-admin" aria-selected="false" aria-controls="p-admin">Administrador</button></div>
+
+<div class="panel" id="p-user" role="tabpanel" aria-labelledby="t-user"><div class="demo">
+<div class="phone" aria-label="Simulador de celular">
+<div class="screen" id="s0"><div class="alert" id="alertBox"><p><b>Emergencia activa</b></p><h3>Evacuar por sismo</h3><p>Mantén la calma. Aléjate de las ventanas y sigue la ruta segura.</p></div>
+<p id="canales" class="live"></p><button class="pri" id="enterado" data-hu="06" style="min-height:90px;font-size:1.3rem">Estoy enterado</button></div>
+<div class="screen" id="s1" hidden><h3>Ruta de evacuación</h3><p id="liftMsg" class="bad" data-hu="18" hidden>Ascensor bloqueado: ruta sin escaleras recalculada.</p>
+<div class="arrow" id="arrow" data-hu="07" aria-hidden="true">↑</div><p class="big" id="stepTxt"></p>
+<label>Mi ritmo <select id="ritmo" data-hu="25"><option value="0.5">Lento</option><option value="1" selected>Normal</option></select></label>
+<p id="eta" data-hu="25"></p><button id="repetir" data-hu="04">Repetir por voz</button><button id="next" class="pri" data-hu="17">Siguiente paso</button>
+<button class="sos" id="sos" data-hu="21">SOS – Solicitar rescate</button><button id="goCom" data-hu="12">Comunicar necesidad</button><p id="sosMsg" class="live" aria-live="polite"></p></div>
+<div class="screen" id="s2" hidden><h3>Comunica lo que necesitas</h3><div class="cards3" data-hu="12">
+<button>Hay humo</button><button>Tengo dolor</button><button>No puedo caminar</button><button>Me falta el aire</button><button>Necesito agua</button><button>Estoy atrapado</button></div>
+<p id="comMsg" class="live" aria-live="polite" data-hu="27"></p><button id="back1">Volver a la ruta</button></div>
+<div class="screen" id="s3" hidden><div class="card ok"><h3>Estás a salvo</h3><p>Llegaste al Patio norte. La alerta se detuvo y la brigada ya lo sabe.</p></div><button id="reset" class="pri">Reiniciar demo</button></div></div>
+<div><h3>Qué demuestra</h3><p>Alerta con vibración, destello a 1 Hz y voz (HU-02, 03, 04, 06), ruta paso a paso con flechas y tiempo estimado (HU-07, 17, 25), ascensor bloqueado (HU-18), SOS (HU-21), tarjetas (HU-12) y estado «a salvo» (HU-10).</p>
+<button id="bloq" data-hu="18">Simular ascensor bloqueado</button></div></div></div>
+
+<div class="panel" id="p-brig" role="tabpanel" aria-labelledby="t-brig" hidden><div class="demo"><div class="card" style="min-width:0">
+<h3>Misiones de rescate</h3><ul id="misiones" style="list-style:none;padding:0;display:grid;gap:.5rem" data-hu="34"></ul></div>
+<div class="card"><h3 id="mTit">Selecciona una misión</h3><p id="mDet" data-hu="36"></p><p id="mPauta" data-hu="43"></p><button class="pri" id="rescatado" data-hu="37" hidden>Marcar como rescatado</button><p id="mMsg" class="live" aria-live="polite"></p></div></div></div>
+
+<div class="panel" id="p-admin" role="tabpanel" aria-labelledby="t-admin" hidden>
+<div class="stats" data-hu="31"><div><b id="nRiesgo">3</b>En riesgo</div><div><b id="nMov">12</b>Evacuando</div><div><b id="nRef">5</b>En refugio</div><div><b id="nEva">45</b>Evacuados</div></div>
+<div class="grid" style="margin-top:1rem"><div class="card" data-hu="33"><h3>Disparo de alertas</h3>
+<fieldset><legend>Alcance</legend><label><input type="radio" name="al" value="todo" checked> Todo el edificio</label> <label><input type="radio" name="al" value="p3"> Piso 3</label></fieldset>
+<label>Mensaje<br><textarea id="msg" maxlength="240" rows="3" style="width:100%">Evacuación inmediata hacia las zonas seguras.</textarea></label>
+<button class="pri" id="emitir">Confirmar y emitir alerta</button><p id="aMsg" class="live" aria-live="polite"></p></div>
+<div class="card" data-hu="39"><h3>Zonas de refugio</h3><p>Refugio A: <b id="rA">Despejado</b> <button id="tA">Cambiar estado</button></p><p>Refugio B: <b id="rB">Despejado</b> <button id="tB">Cambiar estado</button></p>
+<button id="piso" data-hu="47">Marcar piso 3 evacuado</button><p id="pMsg" class="live" aria-live="polite"></p></div></div></div>
+</section>
+<section id="equipo"><h2>Equipo</h2><p>Integrantes del grupo: completar con nombres y códigos.</p></section>
+</main><footer>EvacuAcces · HCI for UX Design · UPC</footer>
+<script src="../js/main.js"></script></body></html>
